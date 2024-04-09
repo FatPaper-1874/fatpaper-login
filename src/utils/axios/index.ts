@@ -1,6 +1,6 @@
 import axios from "axios";
 import FPMessage from "@/components/fp-message";
-import { __USERSERVER__ } from '../../bace';
+import { __USERSERVER__ } from '@/bace';
 
 axios.defaults.baseURL = __USERSERVER__;
 axios.defaults.headers.common["Authorization"] = localStorage.getItem("token");
