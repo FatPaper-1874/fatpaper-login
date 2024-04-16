@@ -2,12 +2,15 @@ import {defineConfig} from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import {visualizer} from "rollup-plugin-visualizer";
-import viteCompression from 'vite-plugin-compression'
+import viteCompression from 'vite-plugin-compression';
+import commonjs from "rollup-plugin-commonjs";
+import externalGlobals from "rollup-plugin-external-globals";
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
         vue(),
+        viteCompression(),
         visualizer({
             gzipSize: true,
             brotliSize: true,
@@ -15,8 +18,16 @@ export default defineConfig({
             filename: "test.html", //分析图生成的文件名
             open: true //如果存在本地服务端口，将在打包后自动展示
         }),
-        viteCompression()
     ],
+    build:{
+        rollupOptions: {
+            plugins: [
+                externalGlobals({
+                    vue: "Vue",
+                }),
+            ],
+        },
+    },
     server: {
         port: 7002,
     },

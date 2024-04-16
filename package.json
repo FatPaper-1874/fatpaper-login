@@ -22,6 +22,8 @@
   "devDependencies": {
     "@types/node": "^20.6.4",
     "@vitejs/plugin-vue": "^4.2.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-external-globals": "^0.10.0",
     "sass": "^1.68.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
