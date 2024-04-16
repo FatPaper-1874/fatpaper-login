@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Background from '@/components/background/background.vue';
-import Login from '@/view/login/login.vue';
+import {defineAsyncComponent} from "vue";
+const Login = defineAsyncComponent(()=>import('@/view/login/login.vue'))
 
 </script>
 
