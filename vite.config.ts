@@ -1,9 +1,8 @@
 import {defineConfig} from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
-import {visualizer} from "rollup-plugin-visualizer";
+import {visualizer} from 'rollup-plugin-visualizer';
 import viteCompression from 'vite-plugin-compression';
-import commonjs from "rollup-plugin-commonjs";
 import externalGlobals from "rollup-plugin-external-globals";
 
 // https://vitejs.dev/config/
