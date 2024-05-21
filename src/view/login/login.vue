@@ -187,8 +187,7 @@ const loginMode = ref(true);
   align-items: center;
 
   @media screen and (max-width: 900px) {
-    flex-direction: row;
-    margin: 0 3rem;
+    margin: 8rem 3rem 0 3rem;
   }
 }
 
@@ -359,6 +358,7 @@ const loginMode = ref(true);
 .title {
   margin-top: 1.5rem;
   user-select: none;
+  text-align: center;
 
   & > span {
     font-size: 6em;
@@ -419,4 +419,3 @@ const loginMode = ref(true);
   }
 }
 </style>
-@/utils/api../../utils/api/index
