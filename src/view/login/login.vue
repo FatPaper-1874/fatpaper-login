@@ -29,7 +29,6 @@ const registerForm = reactive({
 const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
   const file = target.files?.[0];
-  console.log("🚀 ~ file: login.vue:26 ~ handleFileChange ~ file:", file);
 
   if (file) {
     avatarFile.value = file;
@@ -187,7 +186,16 @@ const loginMode = ref(true);
   align-items: center;
 
   @media screen and (max-width: 900px) {
-    margin: 8rem 3rem 0 3rem;
+  }
+
+  @media screen and (max-height: 600px) {
+    flex-direction: row;
+    .title {
+      margin: 0 1.5rem;
+    }
+    .form-container {
+      margin: 0 1.5rem;
+    }
   }
 }
 
