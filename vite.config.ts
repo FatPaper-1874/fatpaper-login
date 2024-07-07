@@ -29,7 +29,7 @@ export default defineConfig({
         },
     },
     server: {
-        port: 7002,
+        port: 81,
     },
     resolve: {
         alias: [
