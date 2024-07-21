@@ -4,7 +4,6 @@ import {ref, reactive, onBeforeMount, toRaw} from "vue";
 import FPMessage from "@/components/fp-message";
 import {getEncryption} from "@/utils";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import {jumpBack, jumpToMonopoly} from "@/utils/page-jump";
 
 onBeforeMount(() => {
   getPublicKey();
@@ -92,7 +91,7 @@ async function handleLogin() {
   }
   const token = await apiLogin(loginForm.useraccount, loginForm.password);
   if (token) {
-    jumpBack(token);
+    window.top && window.top.postMessage(token, "*")
   }
 }
 
