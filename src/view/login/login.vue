@@ -9,6 +9,7 @@ onBeforeMount(() => {
   getPublicKey();
 });
 
+const isLoading = ref(false);
 const title = "FatPaper的小窝";
 const avatarFile = ref<File | undefined>();
 
@@ -50,11 +51,13 @@ function resetRegisterForm() {
 }
 
 const handleRegister = async () => {
+  isLoading.value = true;
   if (!(registerForm.avatar && registerForm.useraccount && registerForm.username && registerForm.password && registerForm.confirmPassword)) {
     FPMessage({
       type: "warning",
       message: "表单没填完 我怎么帮你注册😡"
     })
+    isLoading.value = false;
     return;
   }
   if (registerForm.password === registerForm.confirmPassword) {
@@ -78,21 +81,24 @@ const handleRegister = async () => {
     });
     registerForm.confirmPassword = "";
   }
+  isLoading.value = false;
 };
 
 async function handleLogin() {
-  console.log(loginForm)
+  isLoading.value = true;
   if (!(loginForm.useraccount && loginForm.password)) {
     FPMessage({
       type: "warning",
       message: "表单没填完 你想怎么登录😡"
     })
+    isLoading.value = false;
     return;
   }
   const token = await apiLogin(loginForm.useraccount, loginForm.password);
   if (token) {
     window.top && window.top.postMessage(token, "*")
   }
+  isLoading.value = false;
 }
 
 const loginMode = ref(true);
@@ -120,7 +126,10 @@ const loginMode = ref(true);
           <span>没有账号？点击<span @click="loginMode = false">注册</span></span>
         </div>
 
-        <button @click="handleLogin" class="submit-button">登录</button>
+        <button :disabled="isLoading" @click="handleLogin" class="submit-button">
+          <FontAwesomeIcon v-if="isLoading" icon="spinner" spin/>
+          <span v-else>登录</span>
+        </button>
       </div>
 
       <div v-else class="register-form">
@@ -170,7 +179,10 @@ const loginMode = ref(true);
           <span>已有账号？点击<span @click="loginMode = true">登录</span></span>
         </div>
 
-        <button @click="handleRegister" class="submit-button">注册</button>
+        <button :disabled="isLoading" @click="handleRegister" class="submit-button">
+          <FontAwesomeIcon v-if="isLoading" icon="spinner" spin/>
+          <span v-else>注册</span>
+        </button>
       </div>
     </div>
 

@@ -21,7 +21,7 @@ axios.interceptors.request.use(
 
 // 响应拦截器
 axios.interceptors.response.use(
-    function (response) {
+    async function (response) {
         const msg = response.data.msg;
         if (msg) {
             const status = response.data.status;
@@ -47,7 +47,7 @@ axios.interceptors.response.use(
         }
         return response.data;
     },
-    function (error) {
+    async function (error) {
         let message = "";
         switch (error.response.status) {
             case 400:

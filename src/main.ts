@@ -22,10 +22,11 @@ import {
     faCircleCheck,
     faCircleExclamation,
     faCircleXmark,
-    faCircleInfo
+    faCircleInfo,
+    faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 
 
-library.add(faShieldHalved, faSplotch, faFan, faBook, faMusic, faGuitar, faMugSaucer, faCircleCheck, faCircleExclamation, faCircleXmark, faCircleInfo);
+library.add(faShieldHalved, faSplotch, faFan, faBook, faMusic, faGuitar, faMugSaucer, faCircleCheck, faCircleExclamation, faCircleXmark, faCircleInfo, faSpinner);
 
 createApp(App).component("font-awesome-icon", FontAwesomeIcon).mount("#app");
