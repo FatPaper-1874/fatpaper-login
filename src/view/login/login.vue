@@ -26,7 +26,7 @@ const registerForm = reactive({
   avatar: "",
 });
 
-const handleFileChange = (event: Event) => {
+function handleFileChange(event: Event){
   const target = event.target as HTMLInputElement;
   const file = target.files?.[0];
 
