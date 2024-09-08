@@ -26,7 +26,7 @@ const registerForm = reactive({
   avatar: "",
 });
 
-function handleFileChange(event: Event){
+function handleFileChange(event: Event) {
   const target = event.target as HTMLInputElement;
   const file = target.files?.[0];
 
@@ -68,10 +68,14 @@ const handleRegister = async () => {
       formData.append("useraccount", registerForm.useraccount);
       formData.append("username", registerForm.username);
       formData.append("password", epassword.toString());
-      if (await apiRegister(formData)) {
-        loginForm.useraccount = registerForm.useraccount;
-        resetRegisterForm();
-        loginMode.value = true;
+      try {
+        if (await apiRegister(formData)) {
+          loginForm.useraccount = registerForm.useraccount;
+          resetRegisterForm();
+          loginMode.value = true;
+        }
+      } finally {
+        loginMode.value = false;
       }
     }
   } else {
@@ -94,11 +98,14 @@ async function handleLogin() {
     isLoading.value = false;
     return;
   }
-  const token = await apiLogin(loginForm.useraccount, loginForm.password);
-  if (token) {
-    window.top && window.top.postMessage(token, "*")
+  try {
+    const token = await apiLogin(loginForm.useraccount, loginForm.password);
+    if (token) {
+      window.top && window.top.postMessage(token, "*")
+    }
+  } finally {
+    isLoading.value = false;
   }
-  isLoading.value = false;
 }
 
 const loginMode = ref(true);
