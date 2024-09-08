@@ -75,7 +75,7 @@ const handleRegister = async () => {
           loginMode.value = true;
         }
       } finally {
-        loginMode.value = false;
+        isLoading.value = false;
       }
     }
   } else {
